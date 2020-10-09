@@ -1,0 +1,15 @@
+// Eсли указать .css на конце, то файл не будет минимизарован и будет вставлен в самое начало
+// https://stackoverflow.com/questions/7111610/import-regular-css-file-in-scss-file
+@import "~normalize.css/normalize";
+
+@import "./fonts.scss";
+@import "./helpers.scss";
+@import "./global.scss";
+
+/*blocks*/
+// Lаже внутри подпапок ссылка на ассеты будет выглядеть так: url("../assets/images/3.png"); (без дополнительного выхода наверх из подпапки)
+@import "./blocks/preloader.scss";
+
+html {
+  user-select: none; //autoprefixer check
+}
