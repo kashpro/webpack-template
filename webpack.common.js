@@ -8,9 +8,23 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 
 findHtmlTemplates = () => {
-  return glob.sync(__dirname + "/src/*.html").
-         map( (htmlFile) => {return path.parse(htmlFile).base;} ).
-         map( (htmlFilesName) => {return new HtmlWebpackPlugin( {template: htmlFilesName, filename: htmlFilesName} ); } ); // Имена файлов html должны совпадать в папках src и dist
+  return glob.sync(__dirname + "/src/**/*.html").
+        //  map( (htmlFile) => {return path.parse(htmlFile).base;} ).
+        //  map( (htmlFilesName) => {return new HtmlWebpackPlugin( {template: htmlFilesName, filename: htmlFilesName} ); } ); // Имена файлов html должны совпадать в папках src и dist
+         map( (htmlFile) => {return new HtmlWebpackPlugin( {template: htmlFile, filename: path.parse(htmlFile).base} ); } ); // Имена файлов html должны совпадать в папках src и dist
+}
+
+findPugTemplates = () => {
+  // const PAGES_DIR = `${PATHS.src}/pug/`;
+  // console.log(PAGES_DIR);
+  // const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'));
+  // return PAGES.map( (pugFile) => {return new HtmlWebpackPlugin({template: `${PAGES_DIR}/${page}`, filename: `./${page.replace(/\.pug/,'.html')}`})} );
+  // console.log(glob.sync(__dirname + "/src/pug/**/*.pug").map( (pugFile) => {return path.parse(pugFile).base;} ));
+  // return "";
+  return glob.sync(__dirname + "/src/pug/*.pug").
+        //  map( (pugFile) => {console.log(pugFile); console.log(path.parse(pugFile).dir); return path.parse(pugFile).base;} ).
+        //  map( (pugFilesName) => {return new HtmlWebpackPlugin( {template: pugFilesName, filename: pugFilesName.replace(/\.pug/,'.html')} ); } ); // Имена файлов html должны совпадать в папках src и dist
+            map( (pugFile) => {return new HtmlWebpackPlugin( {template: pugFile, filename: path.parse(pugFile).base.replace(/\.pug/,'.html')} ); } ); // Имена файлов html должны совпадать в папках src и dist
 }
 
 module.exports = {
@@ -178,6 +192,22 @@ module.exports = {
         ],
       },
       /*---------------------------------------*/
+      {
+        test: /\.pug$/,
+        use: [
+          {
+            loader: 'pug-loader',
+            options: {},
+          },
+          // {
+          //   loader: "pug-html-loader",
+          //   options: {
+          //     "pretty":false,
+          //   }
+          // }
+        ],
+      },
+      /*---------------------------------------*/
       { 
         test: /\.vue$/,
         use: [
@@ -201,5 +231,6 @@ module.exports = {
       ],
     }),
     ...findHtmlTemplates(),
+    ...findPugTemplates(),
   ],
 };
