@@ -1,6 +1,6 @@
 /* Development stats */
 import Development from './development.js';
-if (typeof cfg != "undefined" && cfg.showStats === true) {Development.addWindowStatsElement();}
+if (process.env.NODE_ENV === "development") {Development.addWindowStatsElement();}
 
 /* App styles */
 import "@/scss/main.scss";

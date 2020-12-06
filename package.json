@@ -4,10 +4,10 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "watch": "cross-env NODE_ENV=development webpack --config webpack.dev.js --watch",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
-    "dev": "cross-env NODE_ENV=development webpack --config webpack.dev.js",
-    "serve": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.js --open"
+    "watch": "cross-env NODE_ENV=development NODE_PUBLIC_PATH=./ webpack --config webpack.dev.js --watch",
+    "build": "cross-env NODE_ENV=production NODE_PUBLIC_PATH=./ webpack --config webpack.prod.js",
+    "dev": "cross-env NODE_ENV=development NODE_PUBLIC_PATH=./ webpack --config webpack.dev.js",
+    "serve": "cross-env NODE_ENV=development NODE_PUBLIC_PATH=/ webpack-dev-server --config webpack.dev.js --open"
   },
   "author": "kash.pro",
   "license": "ISC",

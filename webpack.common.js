@@ -27,7 +27,8 @@ module.exports = {
   /*==============================================================================*/
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    publicPath: "./", // при офлайне "./", для дев-сервера (для несуществующих маршрутов) "/"
+    // publicPath: "./", // при офлайне "./", для дев-сервера (для несуществующих маршрутов) "/"
+    publicPath: process.env.NODE_PUBLIC_PATH,
     filename: 'js/[name].js',
   },
   /*==============================================================================*/
@@ -108,28 +109,28 @@ module.exports = {
               esModule: false,
             },
           },
-          {
-            loader: 'image-webpack-loader', // jpg и png будут завернуты в RIFF-контейнер
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 75,
-              },
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.90],
-                speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              webp: {
-                quality: 90,
-              },
-            },
-          },
+          // {
+          //   loader: 'image-webpack-loader', // jpg и png будут завернуты в RIFF-контейнер
+          //   options: {
+          //     mozjpeg: {
+          //       progressive: true,
+          //       quality: 75,
+          //     },
+          //     optipng: {
+          //       enabled: false,
+          //     },
+          //     pngquant: {
+          //       quality: [0.65, 0.90],
+          //       speed: 4,
+          //     },
+          //     gifsicle: {
+          //       interlaced: false,
+          //     },
+          //     webp: {
+          //       quality: 90,
+          //     },
+          //   },
+          // },
         ],
       },
       /*---------------------------------------*/
