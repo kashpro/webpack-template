@@ -3,13 +3,23 @@
 @import "~normalize.css/normalize";
 
 @import "./fonts.scss";
+@import "./mixins.scss";
 @import "./helpers.scss";
 @import "./global.scss";
 
 /*blocks*/
-// Lаже внутри подпапок ссылка на ассеты будет выглядеть так: url("../assets/images/3.png"); (без дополнительного выхода наверх из подпапки)
+// даже внутри подпапок ссылка на ассеты будет выглядеть так: url("../assets/images/3.png"); (без дополнительного выхода наверх из подпапки)
 @import "./blocks/preloader.scss";
 
 html {
   user-select: none; //autoprefixer check
+}
+
+.test {
+  $this: &;
+  @include hover {
+    #{$this}__test2 {
+      color: blue;
+    }
+  }
 }
