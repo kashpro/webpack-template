@@ -13,8 +13,6 @@ module.exports = merge(common, {
   devtool: "source-map",
   /*==============================================================================*/
   devServer: {
-    // publicPath: '/',
-    // contentBase: path.join(__dirname, "dist"),
     contentBase: "src",
     watchContentBase: true,
     overlay: true,

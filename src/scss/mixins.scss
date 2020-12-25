@@ -5,8 +5,8 @@
 }
 
 @mixin size($x, $y:$x) {
-	width: $x * 1px;
-	height: $y * 1px;
+  width: $x * 1px;
+  height: $y * 1px;
 };
 
 
